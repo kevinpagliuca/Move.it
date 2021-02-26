@@ -17,8 +17,6 @@ export function ChallengeBox() {
         resetCountdown();
     }
 
-    console.log(activeChallenge);
-
     return (
         <div className={styles.challengeBoxContainer}>
             { activeChallenge ?
