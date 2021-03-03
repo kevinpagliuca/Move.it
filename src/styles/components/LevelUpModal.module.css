@@ -13,8 +13,8 @@
 .container {
     background: var(--white);
     width: 100%;
-    max-width: 800px;
-    padding: 2rem 3rem;
+    max-width: 400px;
+    padding: 4rem 6rem;
     border-radius: 5px;
     box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
     text-align: center;
