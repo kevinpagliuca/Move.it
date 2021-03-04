@@ -6,6 +6,7 @@
     width: 7rem;
     background: var(--white);
     position: fixed;
+    height: 100vh;
 }
 
 .container header {
