@@ -30,6 +30,7 @@
     max-width: 18.5rem;
     margin: 1.5rem 0;
     display: flex;
+    align-items: center;
     color: var(--textHighlight);
 }
 
@@ -55,24 +56,6 @@
     width: 100%;
 }
 
-@media (max-width: 500px) {
-    .formContainer img {
-        width: 100%;
-    }
-}
-
-@media (max-width: 1000px) {
-    .container {
-        grid-template-columns: 1fr;
-    }
-    .formContainer {
-        padding: 3rem;
-    }
-    .backgroundContainer {
-        display: none;
-    }
-}
-
 .loginButton {
     display: flex;
     justify-content: center;
@@ -91,6 +74,8 @@
 .loginButton > svg {
     margin-left: 1rem;
     font-size: 2rem;
+    position: absolute;
+    left: 0;
 }
 
 .loginButton div svg {
@@ -109,3 +94,22 @@
     background: var(--blueDark);
     filter: brightness(0.9);
 }
+
+@media (max-width: 500px) {
+    .formContainer img {
+        width: 100%;
+    }
+}
+
+@media (max-width: 1000px) {
+    .container {
+        grid-template-columns: 1fr;
+    }    
+    .formContainer {
+        padding: 3rem;
+    }
+    .backgroundContainer {
+        display: none;
+    }
+}
+

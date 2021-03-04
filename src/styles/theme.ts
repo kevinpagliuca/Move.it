@@ -42,7 +42,7 @@ export const themes: { [key: string]: Theme } = {
         red: '#ee788c',
         green: '#6fde55',
         blue: '#7a83e6',
-        blueDark: '#6d75c6',
+        blueDark: '#4953b8',
         blueTwitter: '#2AA9E0',
         overlay: 'rgba(0, 0, 0, 0.9)'
     }

@@ -48,8 +48,27 @@
     height: 100%;
 }
 
-.container footer {
+.container footer {    
     padding-bottom: 2rem;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.container footer > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.container footer > div svg {
+    width: 1.8rem;
+    height: 1.8rem;
+    color: var(--gray);
+    margin-bottom: 0.3rem;
 }
 
 .container footer a {
@@ -59,6 +78,7 @@
 }
 
 .container footer a svg {
+    margin-top: 1.5rem;
     width: 2rem;
     height: 2rem;
 }
@@ -71,6 +91,10 @@
 .container header svg, .container main a svg, .container footer a svg {
     width: 2.5rem;
     height: 2.5rem;
+}
+
+.themeSwitcher {
+    margin-top: 0.25rem;
 }
 
 @media (max-width: 1000px) {

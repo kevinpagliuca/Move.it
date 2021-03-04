@@ -35,9 +35,9 @@ Esse projeto foi desenvolvido utilizando as tecnologias abaixo:
 ## 🚀 Começando com o projeto
 
 ### Requisitos
-#
-- Yarn
-- Nodejs
+
+- [Yarn](https://yarnpkg.com/getting-started/install)
+- [Nodejs](https://nodejs.org/en/)
 - [MongoDB Atlas](https://cloud.mongodb.com)
 - [Github OAuth app](https://github.com/settings/applications/new)
 - [Google OAuth app](https://console.developers.google.com/apis/credentials/oauthclient?previousPage=%2Fapis%2Fcredentials%3Fproject%3Dsmooth-ace-273519&project=smooth-ace-273519)

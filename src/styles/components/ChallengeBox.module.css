@@ -103,11 +103,13 @@
     background: #f2dede;
     border-right: 1px solid var(--grayLine);
     color: var(--red);
+    border-radius: 0 0 0 5px;
 }
 
 .challengeActive footer button.challengeSucceededButton {
     background: #dbebdb;
     color: var(--green);
+    border-radius: 0 0 5px 0;
 }
 
 .challengeActive footer button.challengeFailedButton:hover {
