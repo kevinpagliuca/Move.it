@@ -1,6 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { FiLogOut } from 'react-icons/fi';
+import { signOut } from 'next-auth/client'
 
 import Home from '../assets/home.svg';
 import Award from '../assets/award.svg';
@@ -27,6 +29,15 @@ const SideBar: React.FC = () => {
                 <Link href="/leaderboard" passHref>
                     <a className={asPath === '/leaderboard' ? styles.linkActive : ''}>
                         <Award />
+                    </a>
+                </Link>
+
+                <Link href="#logout" passHref>
+                    <a
+                        onClick={() => signOut()}
+                        className={asPath === '/#logout' ? styles.linkActive : ''}
+                    >
+                        <FiLogOut />
                     </a>
                 </Link>
             </main>
