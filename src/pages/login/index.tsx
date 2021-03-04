@@ -2,7 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 
 import { GetServerSideProps, NextPage } from 'next';
-import {FaArrowRight, FaFacebook, FaUserAltSlash, FaGithub, FaGoogle} from 'react-icons/fa';
+import {FaArrowRight, FaFacebook, FaGithub, FaGoogle, FaUser} from 'react-icons/fa';
 
 import { useTheme } from '../../contexts/ThemeContext';
 import { useAuth } from '../../contexts/AuthContext';
@@ -25,7 +25,7 @@ const Login: NextPage = () => {
                 <strong>Bem-vindo</strong>
 
                 <header>
-                    <FaUserAltSlash color={theme.textHighlight} />
+                    <FaUser color={theme.textHighlight} />
                     <p>
                         Faça login com sua conta!
                     </p>
@@ -34,8 +34,8 @@ const Login: NextPage = () => {
                     className={styles.loginButton}
                     onClick={signInGit}
                 >
-                    Login com GitHub
                     <FaGithub />
+                    Login com GitHub
                     <div>
                         <FaArrowRight size={32} />
                     </div>
@@ -45,8 +45,8 @@ const Login: NextPage = () => {
                     onClick={signInFB}
                     style={{marginTop: '10px'}}
                 >
-                    Login com Facebook
                     <FaFacebook />
+                    Login com Facebook
                     <div>
                         <FaArrowRight size={32} />
                     </div>
@@ -56,8 +56,8 @@ const Login: NextPage = () => {
                     onClick={signInGoogle}
                     style={{marginTop: '10px'}}
                 >
-                    Login com Google
                     <FaGoogle />
+                    Login com Google
                     <div>
                         <FaArrowRight size={32} />
                     </div>

@@ -36,10 +36,6 @@
     color: var(--blue);
 }
 
-.themeSwitcher {
-    margin-top: 0.25rem;
-}
-
 @media (max-width: 1000px) {
     .profileContainer {
         margin-top: 4rem;
