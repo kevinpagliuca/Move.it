@@ -7,24 +7,48 @@
     width: 5.5rem;
     height: 5.5rem;
     border-radius: 50%;
-} 
-
-.profileContainer div {
-    margin-left: 1.5rem;
 }
 
-.profileContainer div strong {
+.profileContainer > div {
+    margin-left: 1.5rem;
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+}
+
+.profileContainer > div > header strong {
     font-size: 1.5rem;
     font-weight: 600;
     color: var(--title);
 }
 
-
-.profileContainer div p {
+.profileContainer > div > header p {
     font-size: 1rem;
     margin-top: 0.5rem;
 }
 
-.profileContainer div p img {
+.profileContainer > div > header p img {
     margin-right: 0.5rem;
+}
+
+
+.profileContainer > div > header p  span {
+    color: var(--blue);
+}
+
+.themeSwitcher {
+    margin-top: 0.25rem;
+}
+
+@media (max-width: 1000px) {
+    .profileContainer {
+        margin-top: 4rem;
+        flex-flow: column nowrap;
+    }
+
+    .profileContainer > div {
+        margin-top: 2rem;
+        margin-left: 0;
+        width: 100%;
+    }
 }
