@@ -76,6 +76,7 @@
 @media (max-width: 1000px) {
     .container {
         width: 4rem;
+        position: fixed;        
     }
 
     .container header {

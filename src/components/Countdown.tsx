@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaTimes } from 'react-icons/fa';
 import { useCountdown } from '../contexts/CountdownContext';
 
 import styles from '../styles/components/Countdown.module.css';
@@ -42,8 +43,7 @@ const Countdown: React.FC = () => {
                     <>
                         {isActive ? (
                             <button type="button" className={`${styles.countdownButton} ${styles.countdownButtonActive}`} onClick={resetCountdown}>
-                                Abandonar ciclo
-
+                                Abandonar ciclo <FaTimes style={{marginLeft: '1rem'}}/>
                                 <div className={styles.countdownProgressBar} />
                                 <div className={styles.countdownProgressBarTrack} style={{ width: `${timeProgressPercentage}%` }} />
                             </button>

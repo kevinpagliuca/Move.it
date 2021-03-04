@@ -34,7 +34,7 @@ const Profile: React.FC = () => {
                     onChange={toggleTheme}
                     className={styles.themeSwitcher}
                     onColor={theme.blueDark}
-                    boxShadow="0px 0px 7px 4px rgba(0, 0, 0, 0.3)"
+                    boxShadow="0px 0px 8px rgba(0, 0, 0, 0.3)"
                     uncheckedIcon={false}
                     checkedIcon={false}
                 />
