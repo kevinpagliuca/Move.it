@@ -5,6 +5,7 @@
     align-items: center;
     width: 7rem;
     background: var(--white);
+    position: fixed;
 }
 
 .container header {
