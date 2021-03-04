@@ -2,7 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 
 import { GetServerSideProps, NextPage } from 'next';
-import {FaArrowRight, FaFacebook, FaGithub, FaGoogle} from 'react-icons/fa';
+import {FaArrowRight, FaFacebook, FaUserAltSlash, FaGithub, FaGoogle} from 'react-icons/fa';
 
 import { useTheme } from '../../contexts/ThemeContext';
 import { useAuth } from '../../contexts/AuthContext';
@@ -25,9 +25,9 @@ const Login: NextPage = () => {
                 <strong>Bem-vindo</strong>
 
                 <header>
-                    <FaGithub color={theme.textHighlight} />
+                    <FaUserAltSlash color={theme.textHighlight} />
                     <p>
-                        Faça login com seu GitHub para começar
+                        Faça login com sua conta!
                     </p>
                 </header>
                 <button
