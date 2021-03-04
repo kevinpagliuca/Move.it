@@ -1,33 +1,34 @@
+import React from 'react';
+import { FaTimes } from 'react-icons/fa';
+import { useCountdown } from '../contexts/CountdownContext';
 
-import { useContext } from 'react';
-import { CountdownContext } from '../contexts/CountdownContext';
 import styles from '../styles/components/Countdown.module.css';
 
-
-export function Countdown() {
+const Countdown: React.FC = () => {
     const {
+        time,
+        challengeTime,
         minutes,
         seconds,
-        hasFinished,
         isActive,
+        hasFinished,
         startCountdown,
         resetCountdown
-    } = useContext(CountdownContext);
+    } = useCountdown();
 
+    const [minuteLeft, minuteRight] = minutes.toString().padStart(2, '0').split('');
+    const [secondLeft, secondRight] = seconds.toString().padStart(2, '0').split('');
 
-    const [minuteLeft, minuteRight] = String(minutes).padStart(2, '0').split('');
-    const [secondLeft, secondRight] = String(seconds).padStart(2, '0').split('');
+    const timeProgressPercentage = 100 - (Math.round(time * 100) / challengeTime);
 
     return (
-        <>
+        <div>
             <div className={styles.countdownContainer}>
                 <div>
                     <span>{minuteLeft}</span>
                     <span>{minuteRight}</span>
                 </div>
-
                 <span>:</span>
-
                 <div>
                     <span>{secondLeft}</span>
                     <span>{secondRight}</span>
@@ -35,36 +36,26 @@ export function Countdown() {
             </div>
 
             {hasFinished ? (
-                <button
-                    disabled
-                    className={styles.countdownButton}>
-
-                    Ciclo encerrado
+                <button disabled className={styles.countdownButton}>
+                    Ciclo encerrado <img src="icons/check_circle.svg" alt="Check Circle" />
                 </button>
             ) : (
                     <>
                         {isActive ? (
-                            <button
-                                type="button"
-                                className={`${styles.countdownButton} ${styles.countdownButtonActive}`}
-                                onClick={resetCountdown}>
-                                Abandonar ciclo
+                            <button type="button" className={`${styles.countdownButton} ${styles.countdownButtonActive}`} onClick={resetCountdown}>
+                                Abandonar ciclo <FaTimes style={{marginLeft: '1rem'}}/>
+                                <div className={styles.countdownProgressBar} />
+                                <div className={styles.countdownProgressBarTrack} style={{ width: `${timeProgressPercentage}%` }} />
                             </button>
                         ) : (
-
-                                <button
-                                    type="button"
-                                    className={styles.countdownButton}
-                                    onClick={startCountdown}>
-                                    Iniciar um ciclo
+                                <button type="button" className={styles.countdownButton} onClick={startCountdown}>
+                                    Iniciar um ciclo <img src="icons/start.svg" alt="start" />
                                 </button>
-
                             )}
                     </>
                 )}
-
-
-
-        </>
+        </div>
     );
 }
+
+export default Countdown;

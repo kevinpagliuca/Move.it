@@ -1,64 +1,106 @@
+import React from 'react';
+import { GetServerSideProps, NextPage } from 'next';
 import Head from 'next/head';
-import { GetServerSideProps } from 'next';
+import { getSession } from 'next-auth/client';
+import { ObjectId } from 'mongodb';
 
-import { CountdownProvider } from '../contexts/CountdownContext';
+import ExperienceBar from "../components/ExperienceBar";
+import Profile from '../components/Profile';
+import CompletedChallenges from '../components/CompletedChallenges';
+import Countdown from '../components/Countdown';
+import ChallengeBox from '../components/ChallengeBox';
+import SideBar from '../components/Sidebar';
+import Layout from '../components/Layout';
+
+import withAuth from '../hoc/withAuth';
+
 import { ChallengesProvider } from '../contexts/ChallengesContext';
-
-import { CompletedChallenges } from "../components/CompletedChallenges";
-import { Countdown } from "../components/Countdown";
-import { ExperienceBar } from "../components/ExperienceBar";
-import { Profile } from "../components/Profile";
-import { ChallengeBox } from "../components/ChallengeBox";
+import { CountdownProvider } from '../contexts/CountdownContext';
 
 import styles from '../styles/pages/Home.module.css';
+import { connectToDatabase } from '../database/db';
 
 interface HomeProps {
   level: number;
   currentExperience: number;
   challengesCompleted: number;
+  accumulatedExperience: number
 }
 
-export default function Home(props: HomeProps) {
-
+const Home: NextPage<HomeProps> = ({ level, currentExperience, challengesCompleted, accumulatedExperience }) => {
   return (
     <ChallengesProvider
-      level={props.level}
-      currentExperience={props.currentExperience}
-      challengesCompleted={props.challengesCompleted}
+      level={level}
+      currentExperience={currentExperience}
+      challengesCompleted={challengesCompleted}
+      accumulatedExperience={accumulatedExperience}
     >
-      <div className={styles.container}>
-        <Head>
-          <title>Início | Move.it</title>
-        </Head>
-        <ExperienceBar />
+      <Layout>
+        <SideBar />
+        <div className={styles.container}>
+          <Head>
+            <title>Início | move.it</title>
+          </Head>
+          <ExperienceBar />
 
-        <CountdownProvider>
-          <section>
-            <div>
-              <Profile />
-              <CompletedChallenges />
-              <Countdown />
-            </div>
-
-            <div>
-              <ChallengeBox />
-            </div>
-          </section>
-        </CountdownProvider>
-      </div>
+          <CountdownProvider>
+            <section>
+              <div>
+                <Profile />
+                <CompletedChallenges />
+                <Countdown />
+              </div>
+              <div>
+                <ChallengeBox />
+              </div>
+            </section>
+          </CountdownProvider>
+        </div>
+      </Layout>
     </ChallengesProvider>
   )
 }
 
+export default withAuth(Home);
+
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
-  const { level, currentExperience, challengesCompleted } = ctx.req.cookies
+  const {
+    theme
+  } = ctx.req.cookies;
+
+  const session = await getSession({ req: ctx.req });
+
+  if (!session) {
+    return {
+      props: {}
+    }
+  }
+
+  const database = await connectToDatabase();
+
+  const user = await database.collection('users').findOne({ _id: new ObjectId(session.id) });
+
+  if (!user) {
+    return {
+      props: {}
+    }
+  }
+
+  const {
+    level = null,
+    currentExperience = null,
+    challengesCompleted = null,
+    accumulatedExperience = null
+  } = user;
 
   return {
     props: {
-      level: Number(level),
-      currentExperience: Number(currentExperience),
-      challengesCompleted: Number(challengesCompleted),
+      theme,
+      level,
+      currentExperience,
+      challengesCompleted,
+      accumulatedExperience
     }
   }
 }
