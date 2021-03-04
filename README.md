@@ -2,8 +2,7 @@
   <img src="https://user-images.githubusercontent.com/51030560/108794224-24d43b00-7564-11eb-805a-4fb4dd34b9be.png" alt="MoveIt" />
 </p>
 <p align="center">
-  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/kevinpagliuca/move.it">
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/kevinpagliuca/move.it>
+  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/kevinpagliuca/move.it">                                       
   <img alt="GitHub" src="https://img.shields.io/github/license/kevinpagliuca/move.it?color=brightgreen">
 </p>
 
