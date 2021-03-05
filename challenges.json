@@ -76,7 +76,12 @@
   },
   {
     "type": "body",
-    "description": " dobrar um joelho de cada vez, direcionando-o para a parte externa do corpo, de forma alternada. Esse movimento também deve ser repetido 8 vezes, durante 3 séries.",
+    "description": "Dobrar um joelho de cada vez, direcionando-o para a parte externa do corpo, de forma alternada. Esse movimento também deve ser repetido 8 vezes, durante 3 séries.",
     "amount": 100
-  } 
+  },
+  {
+    "type": "body",
+    "description": "Colocar as mãos na cabeça, flexionar os joelhos (como se fosse uma rã) e saltar. Se conseguir retornar ao solo agachando direto, melhor. O ideal é pular 15 vezes e repetir 4 séries.",
+    "amount": 200
+  }
 ]
