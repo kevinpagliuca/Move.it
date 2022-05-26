@@ -1,33 +1,39 @@
-import React from 'react';
-import { GetServerSideProps, NextPage } from 'next';
-import Head from 'next/head';
-import { getSession } from 'next-auth/client';
-import { ObjectId } from 'mongodb';
+import React from "react";
+
+import { GetServerSideProps, NextPage } from "next";
+import Head from "next/head";
+import { getSession } from "next-auth/client";
+import { ObjectId } from "mongodb";
 
 import ExperienceBar from "../components/ExperienceBar";
-import Profile from '../components/Profile';
-import CompletedChallenges from '../components/CompletedChallenges';
-import Countdown from '../components/Countdown';
-import ChallengeBox from '../components/ChallengeBox';
-import SideBar from '../components/Sidebar';
-import Layout from '../components/Layout';
+import Profile from "../components/Profile";
+import CompletedChallenges from "../components/CompletedChallenges";
+import Countdown from "../components/Countdown";
+import ChallengeBox from "../components/ChallengeBox";
+import SideBar from "../components/Sidebar";
+import Layout from "../components/Layout";
 
-import withAuth from '../hoc/withAuth';
+import withAuth from "../hoc/withAuth";
 
-import { ChallengesProvider } from '../contexts/ChallengesContext';
-import { CountdownProvider } from '../contexts/CountdownContext';
+import { ChallengesProvider } from "../contexts/ChallengesContext";
+import { CountdownProvider } from "../contexts/CountdownContext";
 
-import styles from '../styles/pages/Home.module.css';
-import { connectToDatabase } from '../database/db';
+import styles from "../styles/pages/Home.module.css";
+import { connectToDatabase } from "../database/db";
 
 interface HomeProps {
   level: number;
   currentExperience: number;
   challengesCompleted: number;
-  accumulatedExperience: number
+  accumulatedExperience: number;
 }
 
-const Home: NextPage<HomeProps> = ({ level, currentExperience, challengesCompleted, accumulatedExperience }) => {
+const Home: NextPage<HomeProps> = ({
+  level,
+  currentExperience,
+  challengesCompleted,
+  accumulatedExperience,
+}) => {
   return (
     <ChallengesProvider
       level={level}
@@ -58,40 +64,39 @@ const Home: NextPage<HomeProps> = ({ level, currentExperience, challengesComplet
         </div>
       </Layout>
     </ChallengesProvider>
-  )
-}
+  );
+};
 
 export default withAuth(Home);
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-
-  const {
-    theme
-  } = ctx.req.cookies;
+  const { theme } = ctx.req.cookies;
 
   const session = await getSession({ req: ctx.req });
 
   if (!session) {
     return {
-      props: {}
-    }
+      props: {},
+    };
   }
 
   const database = await connectToDatabase();
 
-  const user = await database.collection('users').findOne({ _id: new ObjectId(session.id) });
+  const user = await database
+    .collection("users")
+    .findOne({ _id: new ObjectId(session.id) });
 
   if (!user) {
     return {
-      props: {}
-    }
+      props: {},
+    };
   }
 
   const {
     level = null,
     currentExperience = null,
     challengesCompleted = null,
-    accumulatedExperience = null
+    accumulatedExperience = null,
   } = user;
 
   return {
@@ -100,7 +105,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       level,
       currentExperience,
       challengesCompleted,
-      accumulatedExperience
-    }
-  }
-}
+      accumulatedExperience,
+    },
+  };
+};

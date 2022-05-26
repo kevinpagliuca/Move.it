@@ -1,6 +1,6 @@
-import '../styles/global.css';
-import { AuthProvider } from '../contexts/AuthContext';
-import { ThemeProvider } from '../contexts/ThemeContext';
+import "../styles/global.css";
+import { AuthProvider } from "../contexts/AuthContext";
+import { ThemeProvider } from "../contexts/ThemeContext";
 
 function MyApp({ Component, pageProps }) {
   return (
