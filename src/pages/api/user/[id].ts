@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { getSession } from "next-auth/client";
+import { getSession } from "next-auth/react";
 import { ObjectId } from "mongodb";
 
-import { connectToDatabase } from "../../../database/db";
+import { connectToDatabase } from "../../../database";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const database = await connectToDatabase();
@@ -36,7 +36,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     const user = await database
       .collection("users")
-      .findOne({ _id: new ObjectId(session.id) });
+      .findOne({ _id: new ObjectId(session.id as string) });
 
     return res.json(user);
   }

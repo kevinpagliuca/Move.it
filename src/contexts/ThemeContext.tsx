@@ -22,12 +22,10 @@ const ThemeContext = createContext({} as ThemeContextData);
 
 interface ThemeProviderProps {
   themeName: ThemeOptions;
+  children: React.ReactNode;
 }
 
-export const ThemeProvider: React.FC<ThemeProviderProps> = ({
-  children,
-  ...rest
-}) => {
+export const ThemeProvider = ({ children, ...rest }: ThemeProviderProps) => {
   const [themeName, setThemeName] = useState<ThemeOptions>(
     rest.themeName || "light"
   );

@@ -2,10 +2,10 @@ import React from "react";
 
 import MediaQuery from "react-responsive";
 
-export const IsMobile: React.FC = ({ children }) => (
+export const IsMobile = ({ children }) => (
   <MediaQuery maxWidth={767}>{children}</MediaQuery>
 );
 
-export const GreaterThanTablet: React.FC = ({ children }) => (
+export const GreaterThanTablet = ({ children }) => (
   <MediaQuery minWidth={768}>{children}</MediaQuery>
 );

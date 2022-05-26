@@ -5,7 +5,7 @@ import { useCountdown } from "../contexts/CountdownContext";
 
 import styles from "../styles/components/ChallengeBox.module.css";
 
-const ChallengeBox: React.FC = () => {
+const ChallengeBox = () => {
   const { activeChallenge, completeChallenge, resetChallenge } =
     useChallenges();
   const { resetCountdown } = useCountdown();

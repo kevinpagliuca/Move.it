@@ -4,7 +4,7 @@ import { useChallenges } from "../contexts/ChallengesContext";
 
 import styles from "../styles/components/CompletedChallenges.module.css";
 
-const CompletedChallenges: React.FC = () => {
+const CompletedChallenges = () => {
   const { challengesCompleted } = useChallenges();
 
   return (

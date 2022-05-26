@@ -1,46 +1,56 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import NextAuth from "next-auth";
-import Providers from "next-auth/providers";
+import NextAuth, { NextAuthOptions } from "next-auth";
+import GoogleProvider from "next-auth/providers/google";
+import GitHubProvider from "next-auth/providers/github";
+import FacebookProvider from "next-auth/providers/facebook";
+import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
+import clientPromise from "../lib/mongodb";
 
-const options = {
+const options: NextAuthOptions = {
+  adapter: MongoDBAdapter(clientPromise),
   providers: [
-    Providers.GitHub({
+    GitHubProvider({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET,
     }),
-    Providers.Facebook({
+    FacebookProvider({
       clientId: process.env.FB_ID,
       clientSecret: process.env.FB_SECRET,
     }),
-    Providers.Google({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      authorizationUrl:
-        "https://accounts.google.com/o/oauth2/v2/auth?prompt=consent&access_type=offline&response_type=code",
+    GoogleProvider({
+      clientId: process.env.GOOGLE_ID,
+      clientSecret: process.env.GOOGLE_SECRET,
+      authorization: {
+        params: {
+          prompt: "consent",
+          access_type: "offline",
+          response_type: "code",
+        },
+      },
     }),
   ],
   callbacks: {
-    signIn: (user: any, session: any) => {
-      return Promise.resolve(session);
+    signIn: async (data) => {
+      return await Promise.resolve(!!data.user);
     },
-    session: (session, user) => {
-      session.id = user.sub;
-      return Promise.resolve(session);
+    session: async ({ session, token, ...rest }) => {
+      session.id = rest.user.id;
+      return await Promise.resolve(session);
     },
-    jwt: (token, user, account, profile, isNewUser) => {
-      return Promise.resolve(token);
+    jwt: async (data) => {
+      console.log("isNew", data.isNewUser);
+
+      console.log(JSON.stringify(data, null, 2));
+      return await Promise.resolve(data.token);
     },
-    redirect: (_: string, _2: string) => {
-      return Promise.resolve(process.env.NEXTAUTH_URL as string);
+    redirect: () => {
+      return Promise.resolve(process.env.NEXTAUTH_URL);
     },
   },
   secret: process.env.SECRET,
   debug: true,
-  session: {
-    jwt: true,
-  },
-  database: process.env.MONGODB_URI,
 };
 
-export default (req: NextApiRequest, res: NextApiResponse) =>
-  NextAuth(req, res, options);
+export default (req: NextApiRequest, res: NextApiResponse) => {
+  return NextAuth(req, res, options);
+};

@@ -1,10 +1,10 @@
 import { createContext, useContext, useCallback, FormEvent } from "react";
 
 import {
-  Provider,
+  SessionProvider,
   signIn as handleOAuthLogin,
   signOut as handleOAuthLogout,
-} from "next-auth/client";
+} from "next-auth/react";
 
 interface AuthContextData {
   signInGit(event: FormEvent): void;
@@ -17,12 +17,10 @@ const AuthContext = createContext({} as AuthContextData);
 
 interface AuthProviderProps {
   session: any;
+  children: React.ReactNode;
 }
 
-export const AuthProvider: React.FC<AuthProviderProps> = ({
-  session,
-  children,
-}) => {
+export const AuthProvider = ({ session, children }: AuthProviderProps) => {
   const signInFB = useCallback(() => {
     handleOAuthLogin("facebook");
   }, []);
@@ -39,14 +37,16 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({
     handleOAuthLogout({ callbackUrl: process.env.NEXTAUTH_URL });
   }, []);
 
+  console.log({ session });
+
   return (
-    <Provider session={session}>
+    <SessionProvider session={session}>
       <AuthContext.Provider
         value={{ signInGit, signOut, signInFB, signInGoogle }}
       >
         {children}
       </AuthContext.Provider>
-    </Provider>
+    </SessionProvider>
   );
 };
 

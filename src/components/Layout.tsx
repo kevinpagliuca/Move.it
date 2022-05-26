@@ -2,7 +2,11 @@ import React from "react";
 
 import styles from "../styles/components/Layout.module.css";
 
-const Layout: React.FC = ({ children }) => {
+interface LayoutProps {
+  children: React.ReactNode;
+}
+
+const Layout = ({ children }: LayoutProps) => {
   return <div className={styles.container}>{children}</div>;
 };
 

@@ -3,7 +3,7 @@ import { useChallenges } from "../contexts/ChallengesContext";
 
 import styles from "../styles/components/LevelUpModal.module.css";
 
-const LevelUpModal: React.FC = () => {
+const LevelUpModal = () => {
   const { level, closeLevelUpModal } = useChallenges();
 
   return (

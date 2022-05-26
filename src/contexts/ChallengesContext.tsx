@@ -1,4 +1,4 @@
-import { useSession } from "next-auth/client";
+import { useSession } from "next-auth/react";
 import React, {
   createContext,
   useContext,
@@ -39,13 +39,14 @@ interface ChallengesProviderProps {
   currentExperience: number;
   challengesCompleted: number;
   accumulatedExperience: number;
+  children: React.ReactNode;
 }
 
-export const ChallengesProvider: React.FC<ChallengesProviderProps> = ({
+export const ChallengesProvider = ({
   children,
   ...rest
-}) => {
-  const [session] = useSession();
+}: ChallengesProviderProps) => {
+  const { data: session, status } = useSession();
   const [level, setLevel] = useState(rest.level || 1);
   const [currentExperience, setCurrentExperience] = useState(
     rest.currentExperience || 0
@@ -70,6 +71,7 @@ export const ChallengesProvider: React.FC<ChallengesProviderProps> = ({
 
   useEffect(() => {
     async function storeData() {
+      // @ts-ignore
       await api.put(`/api/user/${session.id}`, {
         level,
         currentExperience,

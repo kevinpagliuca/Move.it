@@ -1,15 +1,15 @@
 import React from "react";
 import { NextPage } from "next";
-import { useSession } from "next-auth/client";
+import { useSession } from "next-auth/react";
 
 import Login from "../pages/login";
 import Loader from "../components/Loader";
 
 const withAuth = (Component: NextPage) => {
   const Auth: NextPage = (props: any) => {
-    const [session, loading] = useSession();
+    const { data: session, status } = useSession();
 
-    if (loading) {
+    if (status === "loading") {
       return <Loader />;
     }
 

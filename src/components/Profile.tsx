@@ -1,11 +1,11 @@
 import React from "react";
-import { useSession } from "next-auth/client";
+import { useSession } from "next-auth/react";
 import { useChallenges } from "../contexts/ChallengesContext";
 import styles from "../styles/components/Profile.module.css";
 
-const Profile: React.FC = () => {
+const Profile = () => {
   const { level, accumulatedExperience } = useChallenges();
-  const [session] = useSession();
+  const { data: session, status } = useSession();
 
   const { image, name } = session.user;
 

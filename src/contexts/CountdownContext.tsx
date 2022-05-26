@@ -21,7 +21,11 @@ interface CountdownContextData {
 
 const CountdownContext = createContext({} as CountdownContextData);
 
-export const CountdownProvider: React.FC = ({ children }) => {
+interface CountdownProviderProps {
+  children: React.ReactNode;
+}
+
+export const CountdownProvider = ({ children }: CountdownProviderProps) => {
   const { startNewChallenge } = useChallenges();
   const challengeTime = 0.1 * 60;
 

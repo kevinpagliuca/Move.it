@@ -4,7 +4,7 @@ import { useCountdown } from "../contexts/CountdownContext";
 
 import styles from "../styles/components/Countdown.module.css";
 
-const Countdown: React.FC = () => {
+const Countdown = () => {
   const {
     time,
     challengeTime,

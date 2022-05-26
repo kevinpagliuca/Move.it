@@ -4,7 +4,7 @@ import { useChallenges } from "../contexts/ChallengesContext";
 
 import styles from "../styles/components/ExperienceBar.module.css";
 
-const ExperienceBar: React.FC = () => {
+const ExperienceBar = () => {
   const { currentExperience, experienceToNextLevel, levelUp } = useChallenges();
 
   const [percentToNextLevel, setPercentToNextLevel] = useState(0);

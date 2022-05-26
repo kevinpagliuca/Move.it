@@ -6,7 +6,7 @@ import Layout from "../../components/Layout";
 import SideBar from "../../components/Sidebar";
 
 import styles from "../../styles/pages/LeaderBoard.module.css";
-import { connectToDatabase } from "../../database/db";
+import { connectToDatabase } from "../../database";
 import { GreaterThanTablet, IsMobile } from "../../hoc/responsive";
 
 interface LeaderBoardProps {
@@ -16,8 +16,6 @@ interface LeaderBoardProps {
     email: string;
     image: string;
     level: number;
-    createdAt: string;
-    updatedAt: string;
     challengesCompleted: number;
     currentExperience: number;
     accumulatedExperience: number;
@@ -135,8 +133,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       users: users.map((user) => ({
         ...user,
         _id: user._id.toString(),
-        createdAt: user.createdAt.toString(),
-        updatedAt: user.updatedAt.toString(),
       })),
     },
   };

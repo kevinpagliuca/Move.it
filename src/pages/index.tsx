@@ -2,7 +2,7 @@ import React from "react";
 
 import { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
-import { getSession } from "next-auth/client";
+import { getSession } from "next-auth/react";
 import { ObjectId } from "mongodb";
 
 import ExperienceBar from "../components/ExperienceBar";
@@ -19,7 +19,7 @@ import { ChallengesProvider } from "../contexts/ChallengesContext";
 import { CountdownProvider } from "../contexts/CountdownContext";
 
 import styles from "../styles/pages/Home.module.css";
-import { connectToDatabase } from "../database/db";
+import { connectToDatabase } from "../database";
 
 interface HomeProps {
   level: number;
@@ -84,7 +84,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   const user = await database
     .collection("users")
-    .findOne({ _id: new ObjectId(session.id) });
+    .findOne({ _id: new ObjectId(session.id as string) });
 
   if (!user) {
     return {

@@ -4,7 +4,7 @@ import ReactLoading from "react-loading";
 
 import styles from "../styles/components/Loader.module.css";
 
-const Loader: React.FC = () => {
+const Loader = () => {
   return (
     <div className={styles.container}>
       <ReactLoading type="bars" color="#fff" />
