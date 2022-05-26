@@ -37,8 +37,6 @@ export const AuthProvider = ({ session, children }: AuthProviderProps) => {
     handleOAuthLogout({ callbackUrl: process.env.NEXTAUTH_URL });
   }, []);
 
-  console.log({ session });
-
   return (
     <SessionProvider session={session}>
       <AuthContext.Provider

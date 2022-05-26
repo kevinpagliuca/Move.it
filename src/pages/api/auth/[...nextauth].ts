@@ -38,9 +38,6 @@ const options: NextAuthOptions = {
       return await Promise.resolve(session);
     },
     jwt: async (data) => {
-      console.log("isNew", data.isNewUser);
-
-      console.log(JSON.stringify(data, null, 2));
       return await Promise.resolve(data.token);
     },
     redirect: () => {

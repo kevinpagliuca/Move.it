@@ -71,7 +71,6 @@ export const ChallengesProvider = ({
 
   useEffect(() => {
     async function storeData() {
-      // @ts-ignore
       await api.put(`/api/user/${session.id}`, {
         level,
         currentExperience,
