@@ -1,6 +1,7 @@
+import { MONGODB_NAME, MONGODB_URI } from "config/consts";
 import { Db, MongoClient } from "mongodb";
 
-const uri = process.env.MONGODB_URI;
+const uri = MONGODB_URI;
 
 const options: any = {
   useNewUrlParser: true,
@@ -13,7 +14,7 @@ export async function connectToDatabase() {
   if (cachedDb) return cachedDb;
 
   const db = await new MongoClient(uri, options).connect().then((client) => {
-    return client.db(process.env.MONGODB_NAME);
+    return client.db(MONGODB_NAME);
   });
 
   cachedDb = db;

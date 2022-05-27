@@ -1,3 +1,4 @@
+import { NEXTAUTH_URL } from "config/consts";
 import { createContext, useContext, useCallback, FormEvent } from "react";
 
 import {
@@ -34,7 +35,7 @@ export const AuthProvider = ({ session, children }: AuthProviderProps) => {
   }, []);
 
   const signOut = useCallback(() => {
-    handleOAuthLogout({ callbackUrl: process.env.NEXTAUTH_URL });
+    handleOAuthLogout({ callbackUrl: NEXTAUTH_URL });
   }, []);
 
   return (
